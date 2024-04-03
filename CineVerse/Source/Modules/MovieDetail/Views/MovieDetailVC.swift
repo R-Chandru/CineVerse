@@ -15,8 +15,22 @@ class MovieDetailVC: UIViewController, MovieDetailViewProtocol {
     var movieInfos: [MovieDetailInfo] = []
     
     private var movieDetails: MovieDetailModel?
-    private lazy var loadingView = LoadingView()
     private lazy var movieHeaderView = MovieDetailHeaderView()
+    
+    private lazy var loadingView: LoadingView = {
+        let loadingView = LoadingView()
+        loadingView.backgroundColor = .systemBackground
+        return loadingView
+    }()
+    
+    private lazy var errorView: ErrorView = {
+        let errorView = ErrorView()
+        let errorImage = UIImage(named: "error_image")
+        errorView.configure(withImage: errorImage, title: MovieDetailErrorConstants.unknownError)
+        errorView.addSubviewTo(view)
+        return errorView
+    }()
+    
     private lazy var movieTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.delegate = self
@@ -50,7 +64,8 @@ class MovieDetailVC: UIViewController, MovieDetailViewProtocol {
     
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        movieTableView.addSaveViewTo(view)
+        movieTableView.addSubviewTo(view)
+        loadingView.addSubviewTo(view)
         loadingView.show()
     }
     
@@ -61,6 +76,7 @@ class MovieDetailVC: UIViewController, MovieDetailViewProtocol {
         self.movieDetails = movieDetails
         movieHeaderView.updateMovieDetails(with: movieDetails)
         movieTableView.reloadData()
+        loadingView.hide()
     }
     
     
@@ -92,6 +108,12 @@ class MovieDetailVC: UIViewController, MovieDetailViewProtocol {
         let rowIndexPath = IndexPath(row: 1, section: 0)
         movieTableView.reloadRows(at: [rowIndexPath], with: .automatic)
         self.view.layoutIfNeeded()
+    }
+    
+    
+    func showErrorView() {
+        errorView.addSubviewTo(view)
+        loadingView.hide()
     }
     
 }
@@ -152,7 +174,7 @@ extension MovieDetailVC: UITableViewDelegate, UITableViewDataSource {
         case .cast:
             return 350
         default:
-            return 360
+            return 410
         }
     }
     

@@ -13,6 +13,7 @@ class MovieCastCollectionCell: UICollectionViewCell {
     
     private lazy var castImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "cast_placeholder")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true

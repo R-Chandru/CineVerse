@@ -23,6 +23,7 @@ protocol MovieDetailViewProtocol {
     func updateMovieCastImages(with castImages: [MovieImageItem])
     func updateMovieImage(with image: UIImage, type: MovieImageType)
     func updateMovieInfos(with movieInfo: [MovieDetailInfo])
+    func showErrorView()
 }
 
 
@@ -36,6 +37,7 @@ protocol MovieDetailPresenterProtocol {
     func updateMovieCastImages(with castImages: [MovieImageItem])
     func updateMovieImage(with image: UIImage, type: MovieImageType)
     func updateMovieInfos(with movieInfo: [MovieDetailInfo])
+    func showErrorView()
 }
 
 

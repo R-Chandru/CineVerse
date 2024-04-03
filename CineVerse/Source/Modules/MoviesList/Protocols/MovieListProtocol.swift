@@ -20,6 +20,7 @@ protocol MovieListViewProtocol {
     
     func updateMovieList(with movieList: [MovieType : [MovieListItem]], type: MovieType)
     func updateMovieListPoster(with imagesList: [MovieType : [MovieImageItem]], type: MovieType)
+    func showErrorView()
 }
 
 protocol MovieListPresenterProtocol {
@@ -32,6 +33,7 @@ protocol MovieListPresenterProtocol {
     func showDetailView(for movie: MovieDetailAttributes)
     func updateMovieList(with movieList: [MovieType : [MovieListItem]], type: MovieType)
     func updateMovieListPoster(with imagesList: [MovieType : [MovieImageItem]], type: MovieType)
+    func showErrorView()
 }
 
 protocol MovieListInteractorProtocol {

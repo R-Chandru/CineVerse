@@ -38,7 +38,7 @@ class MovieListTableCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        moviesCollectionView.addSaveViewTo(self.contentView)
+        moviesCollectionView.addSubviewTo(self.contentView)
     }
     
     

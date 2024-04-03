@@ -32,7 +32,7 @@ struct MovieDetailModel: Codable {
     let status: String?
     let overview: String?
     let posterPath: String
-    let backdropPath: String
+    let backdropPath: String?
     let voteAverage: Double
     let releaseDate: String?
     let firstAirDate: String?

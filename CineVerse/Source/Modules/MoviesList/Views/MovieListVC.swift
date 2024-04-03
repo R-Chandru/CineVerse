@@ -13,6 +13,20 @@ class MovieListVC: UIViewController, MovieListViewProtocol, MovieListViewDelegat
     var movieListData: [MovieType : [MovieListItem]] = [:]
     var movieListPosterData: [MovieType : [MovieImageItem]] = [:]
     
+    private lazy var loadingView: LoadingView = {
+        let loadingView = LoadingView()
+        loadingView.backgroundColor = .systemBackground
+        return loadingView
+    }()
+    
+    private lazy var errorView: ErrorView = {
+        let errorView = ErrorView()
+        let errorImage = UIImage(named: "error_image")
+        errorView.configure(withImage: errorImage, title: MovieDetailErrorConstants.unknownError)
+        errorView.addSubviewTo(view)
+        return errorView
+    }()
+    
     private lazy var moviesTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -31,19 +45,16 @@ class MovieListVC: UIViewController, MovieListViewProtocol, MovieListViewDelegat
         super.viewDidLoad()
         
         customizeNavBar()
-        addCryptoTableView()
+        moviesTableView.addSubviewTo(view)
+        loadingView.addSubviewTo(view)
+        loadingView.show()
     }
     
     
     private func customizeNavBar() {
-        title = "CineVerse"
+        title = MovieDetailConstants.title
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    
-    private func addCryptoTableView() {
-        moviesTableView.addSaveViewTo(view)
     }
     
     
@@ -66,11 +77,18 @@ class MovieListVC: UIViewController, MovieListViewProtocol, MovieListViewDelegat
         movieListPosterData = imagesList
         let sectionIndexSet = IndexSet(integer: sectionIndex)
         moviesTableView.reloadSections(sectionIndexSet, with: .automatic)
+        loadingView.hide()
     }
     
     
     func didSelectMovie(with movieDetail: MovieDetailAttributes) {
         presenter?.showDetailView(for: movieDetail)
+    }
+    
+    
+    func showErrorView() {
+        errorView.addSubviewTo(view)
+        loadingView.hide()
     }
     
 }

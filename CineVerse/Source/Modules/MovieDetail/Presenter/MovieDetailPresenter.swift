@@ -57,4 +57,12 @@ class MovieDetailPresenter : MovieDetailPresenterProtocol {
             self?.view?.updateMovieInfos(with: movieInfo)
         }
     }
+    
+    
+    func showErrorView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.showErrorView()
+        }
+    }
+    
 }

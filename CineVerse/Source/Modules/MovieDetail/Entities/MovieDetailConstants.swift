@@ -38,3 +38,8 @@ struct MovieInfoConstants {
     static let revenue = "Revenue"
     static let keywords = "Keywords"
 }
+
+
+struct MovieDetailErrorConstants {
+    static let unknownError = "The resource you requested could not be found"
+}

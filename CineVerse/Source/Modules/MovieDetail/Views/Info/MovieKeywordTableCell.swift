@@ -32,7 +32,7 @@ class MovieKeywordTableCell: UITableViewCell {
         let columnLayout = FlowLayout(
             minimumInteritemSpacing: 10,
             minimumLineSpacing: 10,
-            sectionInset: UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 10)
+            sectionInset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         )
         
         let collectionView = UICollectionView(
@@ -41,6 +41,8 @@ class MovieKeywordTableCell: UITableViewCell {
         )
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(MovieKeywordCollectionCell.self, forCellWithReuseIdentifier: MovieKeywordCollectionCell.identifier)
@@ -60,6 +62,7 @@ class MovieKeywordTableCell: UITableViewCell {
     
     
     private func setupViews() {
+        backgroundColor = .systemBackground
         addTitleLabel()
         addCollectionView()
     }
@@ -80,7 +83,6 @@ class MovieKeywordTableCell: UITableViewCell {
         contentView.addSubview(keywordCollectionView)
         
         NSLayoutConstraint.activate([
-//            keywordCollectionView.heightAnchor.constraint(equalToConstant: 50),
             keywordCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: VerticalPadding),
             keywordCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -VerticalPadding),
             keywordCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: HorizontalPadding),

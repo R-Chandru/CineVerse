@@ -39,4 +39,10 @@ class MovieListPresenter : MovieListPresenterProtocol {
         }
     }
     
+    func showErrorView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.showErrorView()
+        }
+    }
+    
 }

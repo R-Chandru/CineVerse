@@ -196,7 +196,10 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
         } else {
             downloadMovieImage(for: movieDetails.posterPath, imageType: .poster)
         }
-        downloadMovieImage(for: movieDetails.backdropPath, imageType: .background)
+        
+        if let imagePath =  movieDetails.backdropPath {
+            downloadMovieImage(for: imagePath, imageType: .background)
+        }
     }
     
     
@@ -228,7 +231,8 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
     
     
     private func handleMovieDetailFailure(with error: Error) {
-        print("Movie List Failed with Error: \(error)")
+        presenter?.showErrorView()
+        print("Movie Detail Failed with Error: \(error)")
     }
     
 }

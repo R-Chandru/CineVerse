@@ -43,6 +43,7 @@ class MovieInfoListTableCell: UITableViewCell {
     
     
     private func setupViews() {
+        backgroundColor = .systemBackground
         addTitleLabel()
         addValueLabel()
     }

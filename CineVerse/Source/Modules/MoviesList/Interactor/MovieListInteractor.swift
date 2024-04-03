@@ -65,6 +65,11 @@ class MovieListInteractor: MovieListInteractorProtocol {
         let dispatchGroup = DispatchGroup()
         
         for movieListItem in movieListItems {
+            if let image = ImageCache.shared.getImage(for: String(movieListItem.id)) {
+                downloadedImages.append(MovieImageItem(id: movieListItem.id, image: image))
+                continue
+            }
+            
             dispatchGroup.enter()
             downloadImage(for: movieListItem) { result in
                 switch result {
@@ -113,6 +118,7 @@ class MovieListInteractor: MovieListInteractorProtocol {
     
     
     private func handleMovieListFailure(with error: Error) {
+        presenter?.showErrorView()
         print("Movie List Failed with Error: \(error)")
     }
     

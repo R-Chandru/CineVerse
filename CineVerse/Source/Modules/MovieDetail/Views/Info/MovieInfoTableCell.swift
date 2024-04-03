@@ -100,7 +100,7 @@ extension MovieInfoTableCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let movieInfo = movieInfos[safe: indexPath.row], movieInfo.keywords != nil {
             let cell = tableView.cellForRow(at: indexPath) as? MovieKeywordTableCell
-            return cell?.getContentHeight() ?? 160
+            return cell?.getContentHeight() ?? 180
         }
         return UITableView.automaticDimension
     }

@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "cineversenetworkframework",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/R-Chandru/CineVerseNetworkFramework.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3f5a6b2cb7e791bef40decabafb6df5230ffc91d"
+      }
+    }
+  ],
+  "version" : 2
+}
